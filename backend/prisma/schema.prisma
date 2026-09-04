@@ -1,0 +1,202 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String                 @id @default(uuid())
+  email         String                 @unique
+  name          String
+  passwordHash  String                 @map("password_hash")
+  createdAt     DateTime               @default(now()) @map("created_at")
+  updatedAt     DateTime               @updatedAt @map("updated_at")
+
+  watchlists    Watchlist[]
+  checkpoints   UserStockCheckpoint[]
+  changeEvents  ChangeEvent[]
+  alerts        Alert[]
+
+  @@map("users")
+}
+
+model Watchlist {
+  id          String          @id @default(uuid())
+  userId      String          @map("user_id")
+  name        String
+  isDefault   Boolean         @default(false) @map("is_default")
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items       WatchlistItem[]
+
+  @@index([userId])
+  @@map("watchlists")
+}
+
+model WatchlistItem {
+  id           String      @id @default(uuid())
+  watchlistId  String      @map("watchlist_id")
+  instrumentId String      @map("instrument_id")
+  position     Int         @default(0)
+  createdAt    DateTime    @default(now()) @map("created_at")
+
+  watchlist    Watchlist   @relation(fields: [watchlistId], references: [id], onDelete: Cascade)
+  instrument   Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+
+  @@unique([watchlistId, instrumentId])
+  @@index([watchlistId])
+  @@index([instrumentId])
+  @@map("watchlist_items")
+}
+
+model Instrument {
+  id                 String                 @id @default(uuid())
+  symbol             String
+  exchange           String
+  micCode            String?                @map("mic_code")
+  country            String?
+  name               String
+  currency           String
+  type               String                 @default("Common Stock")
+  providerSymbol     String                 @map("provider_symbol")
+  isActive           Boolean                @default(true) @map("is_active")
+  metadataUpdatedAt  DateTime               @default(now()) @map("metadata_updated_at")
+
+  watchlistItems     WatchlistItem[]
+  snapshot           LatestMarketSnapshot?
+  bars               MarketBar[]
+  checkpoints        UserStockCheckpoint[]
+  changeEvents       ChangeEvent[]
+  alerts             Alert[]
+
+  @@unique([symbol, exchange])
+  @@index([symbol])
+  @@index([exchange])
+  @@index([isActive])
+  @@map("instruments")
+}
+
+model LatestMarketSnapshot {
+  instrumentId      String     @id @map("instrument_id")
+  price             Float
+  open              Float?
+  high              Float?
+  low               Float?
+  previousClose     Float?     @map("previous_close")
+  volume            Float
+  provider          String
+  providerTimestamp DateTime   @map("provider_timestamp")
+  receivedAt        DateTime   @default(now()) @map("received_at")
+  freshnessStatus   String     @map("freshness_status")
+
+  instrument        Instrument @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+
+  @@map("latest_market_snapshots")
+}
+
+model MarketBar {
+  id           String     @id @default(uuid())
+  instrumentId String     @map("instrument_id")
+  interval     String
+  bucketTime   DateTime   @map("bucket_time")
+  open         Float
+  high         Float
+  low          Float
+  close        Float
+  volume       Float
+  provider     String
+  receivedAt   DateTime   @default(now()) @map("received_at")
+
+  instrument   Instrument @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+
+  @@unique([instrumentId, interval, bucketTime])
+  @@index([instrumentId, interval, bucketTime(sort: Desc)])
+  @@map("market_bars")
+}
+
+model UserStockCheckpoint {
+  id                      String      @id @default(uuid())
+  userId                  String      @map("user_id")
+  instrumentId            String      @map("instrument_id")
+  lastOpenedAt            DateTime    @default(now()) @map("last_opened_at")
+  lastAcknowledgedAt      DateTime    @default(now()) @map("last_acknowledged_at")
+  comparisonCheckpointAt  DateTime    @default(now()) @map("comparison_checkpoint_at")
+  checkpointPrice         Float       @map("checkpoint_price")
+  checkpointVolume        Float?      @map("checkpoint_volume")
+  checkpointMarketBarId   String?     @map("checkpoint_market_bar_id")
+  version                 Int         @default(1)
+  updatedAt               DateTime    @updatedAt @map("updated_at")
+
+  user                    User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  instrument              Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, instrumentId])
+  @@index([userId])
+  @@index([userId, instrumentId])
+  @@map("user_stock_checkpoints")
+}
+
+model ChangeEvent {
+  id               String           @id @default(uuid())
+  userId           String           @map("user_id")
+  instrumentId     String           @map("instrument_id")
+  checkpointFrom   DateTime         @map("checkpoint_from")
+  detectedAt       DateTime         @default(now()) @map("detected_at")
+  attentionScore   Float            @map("attention_score")
+  attentionLevel   String           @map("attention_level")
+  summary          String
+  algorithmVersion String           @map("algorithm_version")
+  acknowledgedAt   DateTime?        @map("acknowledged_at")
+  createdAt        DateTime         @default(now()) @map("created_at")
+
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  instrument       Instrument       @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+  evidence         ChangeEvidence[]
+
+  @@index([userId, detectedAt(sort: Desc)])
+  @@index([userId, instrumentId, detectedAt(sort: Desc)])
+  @@map("change_events")
+}
+
+model ChangeEvidence {
+  id                 String      @id @default(uuid())
+  changeEventId      String      @map("change_event_id")
+  evidenceType       String      @map("evidence_type")
+  oldValue           Float?      @map("old_value")
+  newValue           Float?      @map("new_value")
+  delta              Float?
+  significanceScore  Float       @map("significance_score")
+  source             String
+  sourceTimestamp    DateTime    @map("source_timestamp")
+  metadata           Json?
+
+  changeEvent        ChangeEvent @relation(fields: [changeEventId], references: [id], onDelete: Cascade)
+
+  @@index([changeEventId])
+  @@map("change_evidences")
+}
+
+model Alert {
+  id               String      @id @default(uuid())
+  userId           String      @map("user_id")
+  instrumentId     String      @map("instrument_id")
+  type             String      // PRICE_ABOVE, PRICE_BELOW, PERCENT_MOVE, VOLUME_ANOMALY, MEANINGFUL_CHANGE
+  targetValue      Float       @map("target_value")
+  isTriggered      Boolean     @default(false) @map("is_triggered")
+  enabled          Boolean     @default(true)
+  lastTriggeredAt  DateTime?   @map("last_triggered_at")
+  createdAt        DateTime    @default(now()) @map("created_at")
+  updatedAt        DateTime    @updatedAt @map("updated_at")
+
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  instrument       Instrument  @relation(fields: [instrumentId], references: [id], onDelete: Cascade)
+
+  @@index([userId, enabled])
+  @@index([instrumentId, enabled])
+  @@map("alerts")
+}
