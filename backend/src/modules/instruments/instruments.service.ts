@@ -26,12 +26,18 @@ export class InstrumentsService {
 
     // 1. Search local DB if connected
     try {
+      const upper = trimmed.toUpperCase();
+      const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+
       localMatches = await prisma.instrument.findMany({
         where: {
           isActive: true,
           OR: [
-            { symbol: { contains: trimmed, mode: 'insensitive' } },
-            { name: { contains: trimmed, mode: 'insensitive' } },
+            { symbol: { contains: upper } },
+            { symbol: { contains: trimmed } },
+            { name: { contains: trimmed } },
+            { name: { contains: upper } },
+            { name: { contains: capitalized } },
           ],
         },
         take: 20,
@@ -82,13 +88,19 @@ export class InstrumentsService {
         return providerResults;
       }
 
+      const upper = trimmed.toUpperCase();
+      const capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+
       // Re-fetch sorted results from DB if connected
       const dbResults = await prisma.instrument.findMany({
         where: {
           isActive: true,
           OR: [
-            { symbol: { contains: trimmed, mode: 'insensitive' } },
-            { name: { contains: trimmed, mode: 'insensitive' } },
+            { symbol: { contains: upper } },
+            { symbol: { contains: trimmed } },
+            { name: { contains: trimmed } },
+            { name: { contains: upper } },
+            { name: { contains: capitalized } },
           ],
         },
         take: 20,

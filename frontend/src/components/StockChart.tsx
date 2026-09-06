@@ -7,6 +7,7 @@ import {
   YAxis,
   Tooltip,
   ReferenceLine,
+  CartesianGrid,
 } from 'recharts';
 import { HistoricalBar } from '../types';
 
@@ -52,40 +53,59 @@ export const StockChart: React.FC<StockChartProps> = ({
 
   const isPositive =
     prices.length >= 2 ? prices[prices.length - 1] >= prices[0] : true;
-  const strokeColor = isPositive ? '#15803D' : '#991B1B';
+  const strokeColor = isPositive ? '#15803d' : '#ba1a1a';
+
+  const lastPrice = prices.length > 0 ? prices[prices.length - 1] : 0;
+  const deltaFromCheckpoint =
+    checkpointPrice && lastPrice
+      ? Number((((lastPrice - checkpointPrice) / checkpointPrice) * 100).toFixed(2))
+      : null;
 
   return (
-    <div className="bg-surface-card rounded p-6 shadow-subtle border border-surface-container flex flex-col">
+    <div className="bg-surface-container-lowest p-6 border border-outline-variant flex flex-col font-sans">
       {/* Header & Range Selector */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-2 border-b border-surface-container">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-surface-container-highest">
         <div>
-          <span className="text-xs uppercase font-serif text-bronze-saddle font-semibold tracking-wider">
-            Price Trajectory & Checkpoint Comparison
+          <span className="text-[10px] uppercase font-mono tracking-widest text-secondary font-semibold block">
+            HISTORICAL TRAJECTORY & CHECKPOINT BASELINE
           </span>
-          <div className="flex items-center gap-3 mt-1">
-            <span className="text-2xl font-mono font-bold text-navy-tailored">
+          <div className="flex flex-wrap items-baseline gap-3 mt-1 font-mono">
+            <span className="text-2xl font-medium text-on-surface">
               {currency === 'INR' ? '₹' : '$'}
-              {prices.length > 0 ? prices[prices.length - 1].toFixed(2) : '--'}
+              {lastPrice ? lastPrice.toFixed(2) : '--'}
             </span>
+
             {checkpointPrice && (
-              <span className="text-xs font-mono px-2 py-0.5 rounded bg-surface-subtle text-text-secondary border border-surface-container">
-                Checkpoint: {currency === 'INR' ? '₹' : '$'}
-                {checkpointPrice.toFixed(2)}
-              </span>
+              <div className="flex items-center gap-2 text-xs">
+                <span className="px-2 py-0.5 bg-surface-container border border-outline-variant text-secondary">
+                  Baseline: {currency === 'INR' ? '₹' : '$'}
+                  {checkpointPrice.toFixed(2)}
+                </span>
+                {deltaFromCheckpoint !== null && (
+                  <span
+                    className={`font-semibold ${
+                      deltaFromCheckpoint >= 0 ? 'text-market-gain' : 'text-error'
+                    }`}
+                  >
+                    ({deltaFromCheckpoint >= 0 ? '+' : ''}
+                    {deltaFromCheckpoint}%)
+                  </span>
+                )}
+              </div>
             )}
           </div>
         </div>
 
         {/* Timeframe Tabs */}
-        <div className="flex items-center gap-1 bg-surface-subtle p-1 rounded border border-surface-container">
+        <div className="flex items-center border border-outline-variant bg-surface-container-lowest font-mono text-xs">
           {ranges.map((r) => (
             <button
               key={r}
               onClick={() => handleRangeClick(r)}
-              className={`px-2.5 py-1 text-xs font-mono font-medium rounded transition-all ${
+              className={`px-3 py-1 transition-all cursor-pointer ${
                 selectedRange === r
-                  ? 'bg-navy-tailored text-white shadow-sm'
-                  : 'text-text-secondary hover:text-text-primary'
+                  ? 'bg-primary text-on-primary font-medium'
+                  : 'text-on-surface-variant hover:text-on-surface'
               }`}
             >
               {r}
@@ -95,29 +115,32 @@ export const StockChart: React.FC<StockChartProps> = ({
       </div>
 
       {/* Chart Canvas */}
-      <div className="h-64 sm:h-72 w-full">
+      <div className="h-64 sm:h-80 w-full">
         {chartData.length > 0 ? (
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor={strokeColor} stopOpacity={0.25} />
+                  <stop offset="5%" stopColor={strokeColor} stopOpacity={0.15} />
                   <stop offset="95%" stopColor={strokeColor} stopOpacity={0.0} />
                 </linearGradient>
               </defs>
+              <CartesianGrid stroke="#e8eef6" strokeDasharray="3 3" vertical={false} />
               <XAxis
                 dataKey="time"
-                stroke="#8A94A6"
+                stroke="#76777d"
                 fontSize={11}
                 tickLine={false}
-                axisLine={{ stroke: '#E2E4EB' }}
+                axisLine={{ stroke: '#dde3eb' }}
+                fontFamily="JetBrains Mono, monospace"
               />
               <YAxis
                 domain={[minPrice, maxPrice]}
-                stroke="#8A94A6"
+                stroke="#76777d"
                 fontSize={11}
                 tickLine={false}
                 axisLine={false}
+                fontFamily="JetBrains Mono, monospace"
                 tickFormatter={(val) => `${currency === 'INR' ? '₹' : '$'}${val.toFixed(0)}`}
               />
               <Tooltip
@@ -125,15 +148,16 @@ export const StockChart: React.FC<StockChartProps> = ({
                   if (active && payload && payload.length) {
                     const data = payload[0].payload;
                     return (
-                      <div className="bg-navy-tailored text-white p-3 rounded shadow-lg text-xs font-mono space-y-1">
-                        <p className="text-[10px] text-text-tertiary">{data.fullDate}</p>
-                        <p className="text-sm font-bold text-market-gain">
+                      <div className="bg-primary text-on-primary p-3 border border-outline-variant text-xs font-mono space-y-1">
+                        <p className="text-[10px] text-on-primary-container">{data.fullDate}</p>
+                        <p className="text-sm font-bold text-on-primary">
                           Close: {currency === 'INR' ? '₹' : '$'}
                           {data.close.toFixed(2)}
                         </p>
-                        <div className="text-[10px] text-gray-300 space-y-0.5 pt-1 border-t border-gray-700">
-                          <p>High: ${data.high.toFixed(2)}</p>
-                          <p>Low: ${data.low.toFixed(2)}</p>
+                        <div className="text-[11px] text-on-primary-container space-y-0.5 pt-1.5 border-t border-primary-container">
+                          <p>Open: {currency === 'INR' ? '₹' : '$'}{data.open.toFixed(2)}</p>
+                          <p>High: {currency === 'INR' ? '₹' : '$'}{data.high.toFixed(2)}</p>
+                          <p>Low: {currency === 'INR' ? '₹' : '$'}{data.low.toFixed(2)}</p>
                           <p>Volume: {(data.volume / 1000000).toFixed(2)}M</p>
                         </div>
                       </div>
@@ -145,13 +169,14 @@ export const StockChart: React.FC<StockChartProps> = ({
               {checkpointPrice && (
                 <ReferenceLine
                   y={checkpointPrice}
-                  stroke="#78350F"
+                  stroke="#505f76"
                   strokeDasharray="4 4"
                   label={{
-                    value: `Checkpoint (${currency === 'INR' ? '₹' : '$'}${checkpointPrice})`,
-                    fill: '#78350F',
+                    value: `Baseline (${currency === 'INR' ? '₹' : '$'}${checkpointPrice})`,
+                    fill: '#505f76',
                     fontSize: 10,
                     position: 'insideTopRight',
+                    fontFamily: 'JetBrains Mono, monospace',
                   }}
                 />
               )}
@@ -159,15 +184,15 @@ export const StockChart: React.FC<StockChartProps> = ({
                 type="monotone"
                 dataKey="price"
                 stroke={strokeColor}
-                strokeWidth={2}
+                strokeWidth={1.5}
                 fillOpacity={1}
                 fill="url(#colorPrice)"
               />
             </AreaChart>
           </ResponsiveContainer>
         ) : (
-          <div className="h-full flex items-center justify-center text-text-tertiary text-sm font-mono">
-            Loading chart bars...
+          <div className="h-full flex items-center justify-center text-secondary text-xs font-mono">
+            Loading historical OHLCV data...
           </div>
         )}
       </div>

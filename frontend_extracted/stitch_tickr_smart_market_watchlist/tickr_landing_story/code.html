@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "tertiary-container": "#271901",
+          "tertiary-fixed": "#fcdeb5",
+          "on-secondary": "#ffffff",
+          "surface-tint": "#565e74",
+          "inverse-surface": "#2b3137",
+          "surface-bright": "#f6f9ff",
+          "on-tertiary-fixed-variant": "#574425",
+          "error-container": "#ffdad6",
+          "inverse-primary": "#bec6e0",
+          "secondary-container": "#d0e1fb",
+          "surface": "#f6f9ff",
+          "secondary": "#505f76",
+          "primary-container": "#131b2e",
+          "on-tertiary-container": "#98805d",
+          "inverse-on-surface": "#ebf1f9",
+          "outline-variant": "#c6c6cd",
+          "on-primary-fixed": "#131b2e",
+          "on-secondary-container": "#54647a",
+          "surface-container-low": "#eef4fc",
+          "outline": "#76777d",
+          "on-secondary-fixed-variant": "#38485d",
+          "primary-fixed-dim": "#bec6e0",
+          "on-background": "#161c22",
+          "on-error": "#ffffff",
+          "on-surface": "#161c22",
+          "on-tertiary-fixed": "#271901",
+          "secondary-fixed-dim": "#b7c8e1",
+          "primary": "#000000",
+          "surface-dim": "#d4dbe2",
+          "surface-container-high": "#e3e9f1",
+          "surface-container": "#e8eef6",
+          "on-error-container": "#93000a",
+          "surface-variant": "#dde3eb",
+          "on-primary-container": "#7c839b",
+          "error": "#ba1a1a",
+          "surface-container-highest": "#dde3eb",
+          "primary-fixed": "#dae2fd",
+          "background": "#f6f9ff",
+          "on-primary-fixed-variant": "#3f465c",
+          "on-primary": "#ffffff",
+          "on-surface-variant": "#45464d",
+          "tertiary-fixed-dim": "#dec29a",
+          "on-tertiary": "#ffffff",
+          "tertiary": "#000000",
+          "on-secondary-fixed": "#0b1c30",
+          "surface-container-lowest": "#ffffff",
+          "secondary-fixed": "#d3e4fe"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-lg": "1rem",
+          "margin-desktop": "2rem",
+          "gutter-mobile": "0.75rem",
+          "space-xl": "1.5rem",
+          "space-2xs": "0.125rem",
+          "space-3xl": "3rem",
+          "gutter-desktop": "1.5rem",
+          "space-2xl": "2rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "space-md": "0.75rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "display-lg-mobile": [
+            "Newsreader"
+          ],
+          "display-lg": [
+            "Newsreader"
+          ],
+          "data-metric-sm": [
+            "JetBrains Mono"
+          ],
+          "headline-lg-mobile": [
+            "Newsreader"
+          ],
+          "body-md": [
+            "Geist"
+          ],
+          "label-md": [
+            "Geist"
+          ],
+          "headline-lg": [
+            "Newsreader"
+          ],
+          "data-metric-lg": [
+            "JetBrains Mono"
+          ],
+          "data-metric-md": [
+            "JetBrains Mono"
+          ],
+          "body-lg": [
+            "Geist"
+          ],
+          "body-sm": [
+            "Geist"
+          ],
+          "headline-sm": [
+            "Newsreader"
+          ]
+        },
+        "fontSize": {
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "data-metric-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "500"
+            }
+          ],
+          "data-metric-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "500"
+            }
+          ],
+          "data-metric-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant"><div class="h-16 w-full px-margin-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-xl flex-shrink-0"><div class="flex items-center gap-space-sm"><img alt="Tickr Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U92xMJRGB0TLhUd2LjEDcxOrWugeSUZQfqJzZ9Ym4GDGZG1-e2qAjAPJaKWcrNOiLoHbGVyK4xNlFs9UwzGC3OTsY_ntno9hpcYnR1o8yPVQK7lkMfxM-CkZ1xZSJJCaeJ4gJVZVUWY5FGwgMSJ53yCJIwyaFKQuGc0WuMU4xdXj4gLu8p5-bHp5fSt7jIU6oL0LRTZyUFfHDeMZaVIaz6qFPQ92fYA0afcZYZCtNbzFzLskBCpLESQg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface leading-none">Tickr</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-wider mt-space-2xs">Terminal v2.4</span></div></div><div class="h-6 w-px bg-outline-variant hidden md:block"></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-on-surface border-b-2 border-primary"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="overview-story" href="#">Overview &amp; Story</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="calibration" href="#">Calibration</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="smart-watchlist" href="#">Smart Watchlist</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="stock-intelligence" href="#">Stock Intelligence</a></nav></div><div class="flex items-center gap-space-md flex-shrink-0"><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px] pointer-events-none">search</span><input class="w-48 xl:w-64 pl-8 pr-space-sm py-space-xs font-body-sm text-body-sm bg-surface border border-outline-variant text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary transition-colors" placeholder="Search ticker, ISIN..." type="text"/></div><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface border border-outline-variant"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span><span class="font-data-metric-sm text-data-metric-sm uppercase tracking-wider text-on-surface">NYSE · Open</span></div><div class="h-6 w-px bg-outline-variant hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="hidden xl:flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-tight">Senior Analyst</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant leading-tight">DESK-ALPHA</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFOs1489SyzmEA0LwrwNPl_ms7rZiWkNGLK2QcMPNIh6-0kqEMXy9ialT2LuW-iL-7ESGNeGyAtWHgab2r0xD4oSWTyLNYVJVm8hns5snBicMiekCrmMJayAaiXzFIx048vJNhRofYVXbQP2MhoGX3EQaQFwGTQOHcgyIpl5aXgtsKhs_BUWGT5SRpSyRJ27qnGnC1M9Fzz-5Seek9oY1_hkgYfYA_v7N3OpOYXmYwavpRxgBGVcmU"/></div></div></div></header><main class="w-full pt-16 bg-background"><div class="flex flex-col w-full">
+<!-- Live Mini-Ticker Strip -->
+<section class="w-full bg-surface-container-lowest border-b border-outline-variant">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-space-sm flex flex-wrap items-center justify-between gap-space-md text-data-metric-sm font-data-metric-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="w-1.5 h-1.5 bg-primary rounded-none"></span>
+<span class="uppercase tracking-wider">SYNC PROTOCOL ACTIVE</span>
+<span class="hidden sm:inline text-outline-variant">|</span>
+<span class="hidden sm:inline text-on-surface-variant">BASE SESSION: 09:30:00 EST</span>
+</div>
+<div class="flex items-center flex-wrap gap-space-lg text-on-surface">
+<div class="flex items-center gap-space-xs">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase">S&amp;P 500</span>
+<span class="tabular-nums">5,864.67</span>
+<span class="text-on-surface tabular-nums font-medium">+0.42%</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase">NASDAQ</span>
+<span class="tabular-nums">18,518.61</span>
+<span class="text-on-surface tabular-nums font-medium">+0.68%</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase">DOW</span>
+<span class="tabular-nums">42,863.86</span>
+<span class="text-on-surface tabular-nums font-medium">-0.11%</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase">US 10Y</span>
+<span class="tabular-nums">4.281%</span>
+<span class="text-on-surface-variant tabular-nums">-2.4 bps</span>
+</div>
+<div class="hidden lg:flex items-center gap-space-xs">
+<span class="text-on-surface-variant font-label-md text-label-md uppercase">VIX</span>
+<span class="tabular-nums">13.40</span>
+<span class="text-on-surface-variant tabular-nums font-medium">-0.52</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Hero Section -->
+<section class="w-full bg-surface py-space-3xl px-margin-mobile md:px-margin-desktop border-b border-outline-variant">
+<div class="max-w-7xl mx-auto flex flex-col items-start">
+<div class="flex items-center gap-space-sm mb-space-lg">
+<div class="w-2 h-2 bg-primary"></div>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-widest">System Manifesto · Release 2.4</span>
+</div>
+<h1 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-primary tracking-tight max-w-4xl font-normal leading-tight">
+        A market watchlist that respects your attention.
+      </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-3xl mt-space-xl leading-relaxed">
+        Tickr filters intraday algorithmic noise, calculates net delta strictly against your previous session checkpoint, and attributes verified price variations directly to SEC filings, institutional filings, and regulatory disclosures.
+      </p>
+<div class="flex flex-wrap items-center gap-space-md mt-space-2xl">
+<button class="bg-primary text-on-primary font-body-md text-body-md px-space-lg py-space-sm rounded-none border border-primary hover:bg-inverse-surface transition-colors" type="button">
+          Launch Terminal
+        </button>
+<button class="bg-surface-container-lowest text-primary font-body-md text-body-md px-space-lg py-space-sm rounded-none border border-outline-variant hover:border-primary transition-colors" type="button">
+          Read Methodology
+        </button>
+<div class="hidden sm:flex items-center gap-space-xs ml-space-md pl-space-md border-l border-outline-variant text-data-metric-sm font-data-metric-sm text-on-surface-variant">
+<span>LATENCY: 12ms</span>
+<span>·</span>
+<span>SEC EDGAR DIRECT CIK FEED</span>
+</div>
+</div>
+<!-- Live Baseline Demonstration Visual -->
+<div class="w-full mt-space-3xl bg-surface-container-lowest border border-outline-variant p-space-lg md:p-space-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-space-md border-b border-outline-variant gap-space-sm">
+<div class="flex items-center gap-space-md">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">Inspection Sandbox</span>
+<span class="text-outline-variant font-data-metric-sm">|</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">SAMPLE PORTFOLIO: CORE-EQUITY-L1</span>
+</div>
+<div class="flex items-center gap-space-lg font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+<span>LAST CHECKPOINT: 16:00:00 (YESTERDAY)</span>
+<span class="text-primary font-medium">DRIFT: +1.18%</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg pt-space-lg">
+<div class="border border-outline-variant p-space-md bg-surface">
+<div class="flex justify-between items-start">
+<div>
+<div class="font-headline-sm text-headline-sm text-primary">MSFT</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Microsoft Corp.</div>
+</div>
+<div class="text-right">
+<div class="font-data-metric-md text-data-metric-md text-primary">$422.50</div>
+<div class="font-data-metric-sm text-data-metric-sm text-primary">+1.42%</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-outline-variant">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase block">Catalyst Source</span>
+<span class="font-body-sm text-body-sm text-primary">SEC Form 8-K: Azure Growth Reaffirmation</span>
+</div>
+</div>
+<div class="border border-outline-variant p-space-md bg-surface">
+<div class="flex justify-between items-start">
+<div>
+<div class="font-headline-sm text-headline-sm text-primary">NVDA</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">NVIDIA Corp.</div>
+</div>
+<div class="text-right">
+<div class="font-data-metric-md text-data-metric-md text-primary">$138.25</div>
+<div class="font-data-metric-sm text-data-metric-sm text-primary">+2.84%</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-outline-variant">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase block">Catalyst Source</span>
+<span class="font-body-sm text-body-sm text-primary">SC 13G/A: Institutional Accumulation Filing</span>
+</div>
+</div>
+<div class="border border-outline-variant p-space-md bg-surface">
+<div class="flex justify-between items-start">
+<div>
+<div class="font-headline-sm text-headline-sm text-primary">AAPL</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Apple Inc.</div>
+</div>
+<div class="text-right">
+<div class="font-data-metric-md text-data-metric-md text-primary">$231.10</div>
+<div class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">-0.08%</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-outline-variant">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase block">Catalyst Source</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Noise Floor Suppressed (&lt; 0.30% delta)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Architecture & Connecting Flight Path Animation -->
+<section class="w-full bg-surface-container-lowest py-space-3xl px-margin-mobile md:px-margin-desktop border-b border-outline-variant">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-3xl pb-space-md border-b border-primary">
+<div>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-wider block mb-space-xs">02 / CORE INFRASTRUCTURE</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">System Architecture &amp; Principles</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-space-sm md:mt-0">
+          A four-tier sequential pipeline designed to dismantle retail market anxiety and restore cold, analytical detachment.
+        </p>
+</div>
+<!-- Flight Path Container -->
+<div class="relative grid grid-cols-1 md:grid-cols-4 gap-space-lg">
+<!-- SVG Connecting Line -->
+<div class="hidden md:block absolute top-12 left-0 right-0 h-1 pointer-events-none z-0">
+<svg class="w-full h-8" preserveaspectratio="none" viewbox="0 0 1000 20">
+<line class="tickr-flight-path" stroke="#0F172A" stroke-dasharray="6 6" stroke-opacity="0.3" stroke-width="1.5" x1="20" x2="980" y1="10" y2="10"></line>
+</svg>
+</div>
+<!-- Card 1 -->
+<div class="relative z-10 bg-surface border border-outline-variant p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<span class="font-data-metric-sm text-data-metric-sm text-primary font-semibold">STAGE 01</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">T_0 RESET</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs">Automatic Checkpoints</h3>
+<p class="font-body-md text-body-md text-secondary mt-space-sm">
+              Remembers prices, liquidity, and volume since your last session timestamp. Eliminates arbitrary midnight restarts.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-sm border-t border-outline-variant font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+            STATE STORE: EPHEMERAL-AUTH
+          </div>
+</div>
+<!-- Card 2 -->
+<div class="relative z-10 bg-surface border border-outline-variant p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<span class="font-data-metric-sm text-data-metric-sm text-primary font-semibold">STAGE 02</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">EDGAR CIK</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs">Causal Analysis</h3>
+<p class="font-body-md text-body-md text-secondary mt-space-sm">
+              Corroborates material moves strictly with SEC 8-K/10-Q filings, earnings transcripts, and verified regulatory disclosures.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-sm border-t border-outline-variant font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+            VERIFICATION: ZERO SOCIAL NOISE
+          </div>
+</div>
+<!-- Card 3 -->
+<div class="relative z-10 bg-surface border border-outline-variant p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<span class="font-data-metric-sm text-data-metric-sm text-primary font-semibold">STAGE 03</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">LOW PASS</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs">Noise Filter</h3>
+<p class="font-body-md text-body-md text-secondary mt-space-sm">
+              Suppresses intraday algorithmic chop and meaningless ±0.3% oscillation until volume confirms statistical variance.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-sm border-t border-outline-variant font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+            FLOOR: 2.0 SIGMA DEVIATION
+          </div>
+</div>
+<!-- Card 4 -->
+<div class="relative z-10 bg-surface border border-outline-variant p-space-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-sm border-b border-outline-variant mb-space-md">
+<span class="font-data-metric-sm text-data-metric-sm text-primary font-semibold">STAGE 04</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">PRIORITY</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs">Priority Queue</h3>
+<p class="font-body-md text-body-md text-secondary mt-space-sm">
+              Triages assets objectively into High Attention, Worth Checking, and Stable baselines so time is never squandered.
+            </p>
+</div>
+<div class="mt-space-xl pt-space-sm border-t border-outline-variant font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+            ORDER: RISK &amp; RELEVANCE RANK
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Comparison Table -->
+<section class="w-full bg-surface py-space-3xl px-margin-mobile md:px-margin-desktop border-b border-outline-variant">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col mb-space-2xl">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-wider mb-space-xs">03 / EMPIRICAL CONTRAST</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Terminal Paradigm vs. Retail Gamification</h2>
+</div>
+<!-- Clean 1px Table -->
+<div class="w-full overflow-x-auto border border-outline-variant bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-primary">
+<th class="p-space-md font-label-md text-label-md uppercase tracking-wider text-on-surface-variant w-1/4">Evaluation Vector</th>
+<th class="p-space-md font-label-md text-label-md uppercase tracking-wider text-primary w-3/8 bg-surface-container-low border-l border-r border-outline-variant">
+                Tickr Terminal System
+              </th>
+<th class="p-space-md font-label-md text-label-md uppercase tracking-wider text-on-surface-variant w-3/8">
+                Traditional Retail Brokers
+              </th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-md text-body-md">
+<tr class="hover:bg-surface transition-colors">
+<td class="p-space-md font-label-md text-label-md text-primary font-medium">Checkpoint Tracking</td>
+<td class="p-space-md text-primary bg-surface-container-low/40 border-l border-r border-outline-variant font-data-metric-md text-data-metric-md">
+                Exact user timestamp delta calculation; anchors state to your previous session departure.
+              </td>
+<td class="p-space-md text-secondary font-data-metric-md text-data-metric-md">
+                Arbitrary 00:00 midnight reset; floods view with continuous intraday tick noise.
+              </td>
+</tr>
+<tr class="hover:bg-surface transition-colors">
+<td class="p-space-md font-label-md text-label-md text-primary font-medium">Catalyst Attribution</td>
+<td class="p-space-md text-primary bg-surface-container-low/40 border-l border-r border-outline-variant">
+                Primary source extraction strictly via SEC Form 8-K, 10-Q, 13-F filings &amp; audited releases.
+              </td>
+<td class="p-space-md text-secondary">
+                Aggregated speculative sentiment headlines, clickbait blogs, and social volume spikes.
+              </td>
+</tr>
+<tr class="hover:bg-surface transition-colors">
+<td class="p-space-md font-label-md text-label-md text-primary font-medium">Alert Frequency</td>
+<td class="p-space-md text-primary bg-surface-container-low/40 border-l border-r border-outline-variant">
+                Zero spam. Disciplined statistical threshold notifications triggered only on corroborated filings.
+              </td>
+<td class="p-space-md text-secondary">
+                45+ daily push notifications urging compulsive app opens and reactive trade execution.
+              </td>
+</tr>
+<tr class="hover:bg-surface transition-colors">
+<td class="p-space-md font-label-md text-label-md text-primary font-medium">UI Philosophy</td>
+<td class="p-space-md text-primary bg-surface-container-low/40 border-l border-r border-outline-variant">
+                Quiet editorial discipline, archival serif typography, zero animations designed to distract.
+              </td>
+<td class="p-space-md text-secondary">
+                Gamified flashing red/green confetti, pulsating status badges, and synthetic urgency metrics.
+              </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Section 4: Editorial Methodology Note -->
+<section class="w-full bg-surface-container-lowest py-space-3xl px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-space-2xl">
+<div class="max-w-2xl">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-wider block mb-space-xs">04 / DISCLOSURES &amp; DATA PROVENANCE</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-md">Methodological Rigor</h3>
+<p class="font-body-md text-body-md text-secondary leading-relaxed">
+          Tickr is engineered for analysts, asset allocators, and disciplined investors who value cognitive clarity over high-frequency casino mechanics. Data feeds are normalized directly from Level-1 consolidated tapes and synchronized against the SEC EDGAR public disclosure index. Tickr is not a broker-dealer and provides algorithmic triage, not investment advice.
+        </p>
+</div>
+<div class="flex flex-col gap-space-sm border-l border-outline-variant pl-space-lg w-full md:w-auto">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary font-semibold">Institutional Resources</span>
+<a class="font-body-sm text-body-sm text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors" href="#">
+          Protocol RFC-883 Architectural Specs →
+        </a>
+<a class="font-body-sm text-body-sm text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors" href="#">
+          SEC Edgar Direct Pipeline Whitepaper →
+        </a>
+<a class="font-body-sm text-body-sm text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors" href="#">
+          Variance Attenuation Model Details →
+        </a>
+<a class="font-body-sm text-body-sm text-on-surface hover:text-primary underline underline-offset-4 decoration-outline-variant hover:decoration-primary transition-colors" href="#">
+          Request Desk API Access Credentials →
+        </a>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Subtle animation for the flight path line
+  (function() {
+    const flightPath = document.querySelector('.tickr-flight-path');
+    if (!flightPath) return;
+    let offset = 0;
+    function animateFlightPath() {
+      offset = (offset + 0.15) % 24;
+      flightPath.setAttribute('stroke-dashoffset', offset.toString());
+      requestAnimationFrame(animateFlightPath);
+    }
+    requestAnimationFrame(animateFlightPath);
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-space-3xl"><div class="w-full px-margin-desktop py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-on-surface">Tickr</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">Institutional Intelligence Terminal · System Protocol RFC-883</span></div><div class="flex items-center gap-space-lg"><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">LATENCY 12ms</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">FEED: DIRECT-L1</span><span class="font-label-md text-label-md text-on-surface-variant">© 2025 Tickr Analytics LLC</span></div></div></footer></body></html>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "tertiary-container": "#271901",
+          "tertiary-fixed": "#fcdeb5",
+          "on-secondary": "#ffffff",
+          "surface-tint": "#565e74",
+          "inverse-surface": "#2b3137",
+          "surface-bright": "#f6f9ff",
+          "on-tertiary-fixed-variant": "#574425",
+          "error-container": "#ffdad6",
+          "inverse-primary": "#bec6e0",
+          "secondary-container": "#d0e1fb",
+          "surface": "#f6f9ff",
+          "secondary": "#505f76",
+          "primary-container": "#131b2e",
+          "on-tertiary-container": "#98805d",
+          "inverse-on-surface": "#ebf1f9",
+          "outline-variant": "#c6c6cd",
+          "on-primary-fixed": "#131b2e",
+          "on-secondary-container": "#54647a",
+          "surface-container-low": "#eef4fc",
+          "outline": "#76777d",
+          "on-secondary-fixed-variant": "#38485d",
+          "primary-fixed-dim": "#bec6e0",
+          "on-background": "#161c22",
+          "on-error": "#ffffff",
+          "on-surface": "#161c22",
+          "on-tertiary-fixed": "#271901",
+          "secondary-fixed-dim": "#b7c8e1",
+          "primary": "#000000",
+          "surface-dim": "#d4dbe2",
+          "surface-container-high": "#e3e9f1",
+          "surface-container": "#e8eef6",
+          "on-error-container": "#93000a",
+          "surface-variant": "#dde3eb",
+          "on-primary-container": "#7c839b",
+          "error": "#ba1a1a",
+          "surface-container-highest": "#dde3eb",
+          "primary-fixed": "#dae2fd",
+          "background": "#f6f9ff",
+          "on-primary-fixed-variant": "#3f465c",
+          "on-primary": "#ffffff",
+          "on-surface-variant": "#45464d",
+          "tertiary-fixed-dim": "#dec29a",
+          "on-tertiary": "#ffffff",
+          "tertiary": "#000000",
+          "on-secondary-fixed": "#0b1c30",
+          "surface-container-lowest": "#ffffff",
+          "secondary-fixed": "#d3e4fe"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-lg": "1rem",
+          "margin-desktop": "2rem",
+          "gutter-mobile": "0.75rem",
+          "space-xl": "1.5rem",
+          "space-2xs": "0.125rem",
+          "space-3xl": "3rem",
+          "gutter-desktop": "1.5rem",
+          "space-2xl": "2rem",
+          "space-sm": "0.5rem",
+          "space-xs": "0.25rem",
+          "space-md": "0.75rem",
+          "margin-mobile": "1rem"
+        },
+        "fontFamily": {
+          "display-lg-mobile": [
+            "Newsreader"
+          ],
+          "display-lg": [
+            "Newsreader"
+          ],
+          "data-metric-sm": [
+            "JetBrains Mono"
+          ],
+          "headline-lg-mobile": [
+            "Newsreader"
+          ],
+          "body-md": [
+            "Geist"
+          ],
+          "label-md": [
+            "Geist"
+          ],
+          "headline-lg": [
+            "Newsreader"
+          ],
+          "data-metric-lg": [
+            "JetBrains Mono"
+          ],
+          "data-metric-md": [
+            "JetBrains Mono"
+          ],
+          "body-lg": [
+            "Geist"
+          ],
+          "body-sm": [
+            "Geist"
+          ],
+          "headline-sm": [
+            "Newsreader"
+          ]
+        },
+        "fontSize": {
+          "display-lg-mobile": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg": [
+            "48px",
+            {
+              "lineHeight": "56px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "400"
+            }
+          ],
+          "data-metric-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg-mobile": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "500"
+            }
+          ],
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "500"
+            }
+          ],
+          "data-metric-lg": [
+            "24px",
+            {
+              "lineHeight": "32px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "500"
+            }
+          ],
+          "data-metric-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "20px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest border-b border-outline-variant"><div class="h-16 w-full px-margin-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-xl flex-shrink-0"><div class="flex items-center gap-space-sm"><img alt="Tickr Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U92xMJRGB0TLhUd2LjEDcxOrWugeSUZQfqJzZ9Ym4GDGZG1-e2qAjAPJaKWcrNOiLoHbGVyK4xNlFs9UwzGC3OTsY_ntno9hpcYnR1o8yPVQK7lkMfxM-CkZ1xZSJJCaeJ4gJVZVUWY5FGwgMSJ53yCJIwyaFKQuGc0WuMU4xdXj4gLu8p5-bHp5fSt7jIU6oL0LRTZyUFfHDeMZaVIaz6qFPQ92fYA0afcZYZCtNbzFzLskBCpLESQg"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface leading-none">Tickr</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-wider mt-space-2xs">Terminal v2.4</span></div></div><div class="h-6 w-px bg-outline-variant hidden md:block"></div><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-on-surface border-b-2 border-primary"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="overview-story" href="#">Overview &amp; Story</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="calibration" href="#">Calibration</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface py-space-md border-b-2 border-transparent transition-colors uppercase" data-path="smart-watchlist" href="#">Smart Watchlist</a><a aria-current="page" class="font-label-md py-space-md transition-colors uppercase text-on-surface border-b-2 border-primary" data-path="stock-intelligence" href="#">Stock Intelligence</a></nav></div><div class="flex items-center gap-space-md flex-shrink-0"><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px] pointer-events-none">search</span><input class="w-48 xl:w-64 pl-8 pr-space-sm py-space-xs font-body-sm text-body-sm bg-surface border border-outline-variant text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:border-primary transition-colors" placeholder="Search ticker, ISIN..." type="text"/></div><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs bg-surface border border-outline-variant"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span><span class="font-data-metric-sm text-data-metric-sm uppercase tracking-wider text-on-surface">NYSE · Open</span></div><div class="h-6 w-px bg-outline-variant hidden sm:block"></div><div class="flex items-center gap-space-sm"><div class="hidden xl:flex flex-col text-right"><span class="font-label-md text-label-md text-on-surface leading-tight">Senior Analyst</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant leading-tight">DESK-ALPHA</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFOs1489SyzmEA0LwrwNPl_ms7rZiWkNGLK2QcMPNIh6-0kqEMXy9ialT2LuW-iL-7ESGNeGyAtWHgab2r0xD4oSWTyLNYVJVm8hns5snBicMiekCrmMJayAaiXzFIx048vJNhRofYVXbQP2MhoGX3EQaQFwGTQOHcgyIpl5aXgtsKhs_BUWGT5SRpSyRJ27qnGnC1M9Fzz-5Seek9oY1_hkgYfYA_v7N3OpOYXmYwavpRxgBGVcmU"/></div></div></div></header><main class="w-full pt-16 bg-background"><div class="flex flex-col w-full">
+<!-- Top Context Navigation Strip -->
+<div class="w-full bg-surface-container-lowest border-b border-outline-variant">
+<div class="px-margin-desktop py-space-sm flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<a class="font-data-metric-sm text-data-metric-sm text-on-surface-variant hover:text-on-surface flex items-center gap-space-2xs uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-[14px]">arrow_back</span>
+<span>Watchlist: Semiconductor Tier-1</span>
+</a>
+<span class="text-outline-variant">/</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface font-semibold uppercase tracking-wider">NVDA</span>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+<span>DATA INTEGRITY:</span>
+<span class="text-on-surface font-medium">REALTIME L1 DIRECT</span>
+</div>
+<div class="flex items-center gap-space-xs font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+<span>SEC FEED:</span>
+<span class="text-on-surface font-medium">EDGAR ACTIVE (0.4s lag)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Page Body -->
+<div class="w-full px-margin-desktop py-space-xl flex flex-col gap-space-xl">
+<!-- 1. Stock Quote Header & Fundamentals Strip -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col">
+<!-- Upper Identity & Price Banner -->
+<div class="p-space-xl flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-data-metric-md text-data-metric-md bg-surface text-on-surface px-space-sm py-space-2xs border border-outline-variant uppercase font-medium">
+              NASDAQ: NVDA
+            </span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+              Common Stock · CUSIP 67066G104
+            </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-space-2xs">
+            NVIDIA Corporation
+          </h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl">
+            Global design and manufacturing of accelerated graphics computing architectures, enterprise datacenter AI clusters, and high-performance processing hardware.
+          </p>
+</div>
+<!-- Right Quotation Cluster -->
+<div class="flex flex-col lg:items-end">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-data-metric-lg text-[36px] leading-[40px] text-on-surface font-semibold tracking-tight">
+              $141.54
+            </span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase font-medium">
+              USD
+            </span>
+</div>
+<div class="flex items-center gap-space-sm mt-space-2xs">
+<span class="font-data-metric-md text-data-metric-md text-on-surface font-medium">
+              +$4.32 (+3.15%)
+            </span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+              REGULAR SESSION · TODAY
+            </span>
+</div>
+</div>
+</div>
+<!-- Lower Fundamentals Strip -->
+<div class="grid grid-cols-2 md:grid-cols-5 border-t border-outline-variant bg-surface">
+<div class="p-space-md border-r border-b md:border-b-0 border-outline-variant flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Market Capitalization</span>
+<span class="font-data-metric-md text-data-metric-md text-on-surface font-medium mt-space-2xs">$3.48T</span>
+</div>
+<div class="p-space-md border-r border-b md:border-b-0 border-outline-variant flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">P/E Ratio (TTM)</span>
+<span class="font-data-metric-md text-data-metric-md text-on-surface font-medium mt-space-2xs">64.2</span>
+</div>
+<div class="p-space-md border-r border-outline-variant flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">20D Average Volume</span>
+<span class="font-data-metric-md text-data-metric-md text-on-surface font-medium mt-space-2xs">48.20M</span>
+</div>
+<div class="p-space-md border-r border-outline-variant flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">52-Week Range</span>
+<span class="font-data-metric-md text-data-metric-md text-on-surface font-medium mt-space-2xs">$45.10 – $144.42</span>
+</div>
+<div class="p-space-md col-span-2 md:col-span-1 flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Beta Coefficient (5Y)</span>
+<span class="font-data-metric-md text-data-metric-md text-on-surface font-medium mt-space-2xs">1.68</span>
+</div>
+</div>
+</div>
+<!-- 2. Dedicated "Since You Last Checked" Spotlight Module -->
+<div class="bg-surface-container-lowest border-2 border-primary flex flex-col">
+<!-- Section Tag Header -->
+<div class="bg-primary px-space-xl py-space-md flex flex-wrap items-center justify-between gap-space-sm text-on-primary">
+<div class="flex items-center gap-space-sm">
+<span class="font-data-metric-sm text-data-metric-sm uppercase tracking-widest bg-on-primary/10 px-space-xs py-space-2xs font-semibold">
+            STATE AUDIT ENGINE
+          </span>
+<span class="font-headline-sm text-headline-sm text-on-primary">
+            Since You Last Checked
+          </span>
+</div>
+<div class="font-data-metric-sm text-data-metric-sm text-on-primary/80">
+          BASELINE CHECKPOINT: THURSDAY, OCT 24, 2024 · 16:00 EST
+        </div>
+</div>
+<!-- Spotlight Metrics Matrix -->
+<div class="p-space-xl grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-lg border-b border-outline-variant">
+<div class="flex flex-col gap-space-2xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Prior Checkpoint Price</span>
+<span class="font-data-metric-lg text-data-metric-lg text-on-surface font-medium">$137.22</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">Market close snapshot</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Current Market Price</span>
+<span class="font-data-metric-lg text-data-metric-lg text-on-surface font-semibold">$141.54</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">Live NYSE execution</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Net Movement Delta</span>
+<span class="font-data-metric-lg text-data-metric-lg text-on-surface font-semibold">+$4.32 (+3.15%)</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">Exceeded threshold at 10:14 EST</span>
+</div>
+<div class="flex flex-col gap-space-2xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Session Turnover Volume</span>
+<span class="font-data-metric-lg text-data-metric-lg text-on-surface font-medium">62.4M Shares</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">1.82× 20D baseline volume</span>
+</div>
+</div>
+<!-- Calibration Impact & Analysis Note -->
+<div class="px-space-xl py-space-md bg-surface flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start md:items-center gap-space-sm">
+<span class="font-data-metric-sm text-data-metric-sm font-semibold uppercase px-space-xs py-space-2xs bg-primary text-on-primary">
+            TRIGGER
+          </span>
+<p class="font-body-md text-body-md text-on-surface">
+            Move exceeded your <span class="font-medium text-on-surface">3.0% calibrated volatility threshold</span> at 10:14 EST. Causal verification identified below.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="px-space-md py-space-xs bg-surface-container-lowest border border-outline-variant font-label-md text-label-md uppercase tracking-wider text-on-surface hover:border-primary transition-colors">
+            Acknowledge Movement
+          </button>
+<button class="px-space-md py-space-xs bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider hover:bg-surface-variant hover:text-on-surface transition-colors">
+            Reset Threshold
+          </button>
+</div>
+</div>
+</div>
+<!-- 3. Causal Move Explanation (Verified Filing Attribution) -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col">
+<!-- Section Header -->
+<div class="px-space-xl py-space-md border-b border-outline-variant flex flex-wrap items-center justify-between gap-space-sm bg-surface">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">
+            SEC EDGAR Causal Verification Linkage
+          </span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant bg-surface-container-lowest px-space-xs py-space-2xs border border-outline-variant">
+            DOC_REF: 0001045810-24-000088
+          </span>
+</div>
+<div class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+          CONFIDENCE SCORE: 98.4%
+        </div>
+</div>
+<!-- Filing Analysis Content -->
+<div class="p-space-xl flex flex-col gap-space-lg">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-space-md border-b border-outline-variant pb-space-lg">
+<div class="flex flex-col gap-space-2xs">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant uppercase tracking-wider">
+              Primary Driver Identified
+            </span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">
+              Form 8-K: Multi-Year Enterprise Infrastructure Agreement with Sovereign Cloud Provider
+            </h2>
+<div class="flex items-center gap-space-sm font-data-metric-sm text-data-metric-sm text-on-surface-variant mt-space-2xs">
+<span>Filing Date: Today, 08:30 EST</span>
+<span>·</span>
+<span>Distribution: SEC EDGAR Core System</span>
+<span>·</span>
+<span>Item 1.01: Entry into a Material Definitive Agreement</span>
+</div>
+</div>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm border border-primary text-primary font-label-md text-label-md uppercase tracking-wider hover:bg-primary hover:text-on-primary transition-colors flex-shrink-0" href="#">
+<span>Inspect Raw SEC EDGAR Filing</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+</div>
+<!-- Analytical Summary & Timeline Trace -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-xl">
+<div class="lg:col-span-2 flex flex-col gap-space-sm">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">
+              Executive Filing Synthesis
+            </h3>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+              NVIDIA Corporation submitted an 8-K disclosure detailing a definitive binding $4.8B sovereign AI cluster procurement deployment across Western European infrastructure consortiums. Causal attribution models note instantaneous volume concentration in pre-market block executions immediately following the 08:30 EST publication window.
+            </p>
+<div class="bg-surface p-space-md border border-outline-variant font-data-metric-sm text-data-metric-sm text-on-surface-variant flex flex-col gap-space-2xs mt-space-xs">
+<span class="text-on-surface font-medium uppercase tracking-wider">Automated Audit Cross-Check:</span>
+<span>• Pre-market 08:30–09:00 EST turnover: 12.8M shares (normal run-rate: 1.4M).</span>
+<span>• Correlated sector sympathy: ASML (+2.4%), AMD (+1.1%), TSM (+1.9%).</span>
+<span>• No offsetting negative insider disposals registered under Form 4 in past 24 hours.</span>
+</div>
+</div>
+<!-- Chronology Box -->
+<div class="flex flex-col border border-outline-variant bg-surface">
+<div class="px-space-md py-space-sm border-b border-outline-variant font-label-md text-label-md uppercase tracking-wider text-on-surface font-medium">
+              Execution Sequence
+            </div>
+<div class="divide-y divide-outline-variant font-data-metric-sm text-data-metric-sm">
+<div class="p-space-md flex flex-col gap-space-2xs">
+<div class="flex justify-between text-on-surface-variant">
+<span>08:30:12 EST</span>
+<span>SEC FEED</span>
+</div>
+<div class="text-on-surface font-medium">8-K Ingested by EDGAR gateway</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-2xs">
+<div class="flex justify-between text-on-surface-variant">
+<span>08:31:05 EST</span>
+<span>PRE-MARKET</span>
+</div>
+<div class="text-on-surface font-medium">First institutional block print: 450,000 shares @ $139.50</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-2xs">
+<div class="flex justify-between text-on-surface-variant">
+<span>09:30:00 EST</span>
+<span>CASH OPEN</span>
+</div>
+<div class="text-on-surface font-medium">Cash open gap up to $139.80; high volume auction print</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-2xs">
+<div class="flex justify-between text-on-surface-variant">
+<span>10:14:22 EST</span>
+<span>ALERT</span>
+</div>
+<div class="text-on-surface font-medium">Crossing user volatility parameter (+3.00% @ $141.34)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. Historical Checkpoint Ledger -->
+<div class="bg-surface-container-lowest border border-outline-variant flex flex-col">
+<!-- Section Header -->
+<div class="px-space-xl py-space-md border-b border-outline-variant flex flex-wrap items-center justify-between gap-space-sm bg-surface">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Inspection Checkpoint Ledger</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Historical checkpoints logged by your terminal account</span>
+</div>
+<div class="flex items-center gap-space-xs font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+<span>SORT: REVERSE CHRONOLOGICAL</span>
+</div>
+</div>
+<!-- Table Component -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b-2 border-primary font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+<th class="px-space-xl py-space-sm font-medium">Inspection Checkpoint</th>
+<th class="px-space-md py-space-sm font-medium">Checkpoint Price</th>
+<th class="px-space-md py-space-sm font-medium">Session Delta</th>
+<th class="px-space-md py-space-sm font-medium">Classification</th>
+<th class="px-space-xl py-space-sm font-medium text-right">Audit Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-data-metric-md text-data-metric-md text-on-surface">
+<!-- Row 1 (Current Active Checkpoint) -->
+<tr class="bg-surface-container-low transition-colors duration-150 hover:bg-surface-container">
+<td class="px-space-xl py-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Thursday, Oct 24, 2024</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">16:00 EST · Prior Baseline Session</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-medium">
+                $137.22
+              </td>
+<td class="px-space-md py-space-md text-on-surface">
+                +$1.10 (+0.81%)
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-data-metric-sm text-data-metric-sm px-space-sm py-space-2xs border border-outline-variant bg-surface-container-lowest uppercase font-medium">
+                  Stable
+                </span>
+</td>
+<td class="px-space-xl py-space-md text-right">
+<span class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-wider">
+                  Baseline Anchor
+                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-lowest transition-colors duration-150 hover:bg-surface">
+<td class="px-space-xl py-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Monday, Oct 21, 2024</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">09:30 EST · Regular Open Checkpoint</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-medium">
+                $136.12
+              </td>
+<td class="px-space-md py-space-md text-on-surface">
+                -$2.40 (-1.73%)
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-data-metric-sm text-data-metric-sm px-space-sm py-space-2xs border border-outline-variant bg-surface uppercase font-medium">
+                  Worth Checking
+                </span>
+</td>
+<td class="px-space-xl py-space-md text-right">
+<button class="font-label-md text-label-md text-on-surface hover:underline uppercase tracking-wider">
+                  View Snapshot
+                </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-surface-container-lowest transition-colors duration-150 hover:bg-surface">
+<td class="px-space-xl py-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Wednesday, Oct 16, 2024</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">16:00 EST · Market Close Checkpoint</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-medium">
+                $138.52
+              </td>
+<td class="px-space-md py-space-md text-on-surface font-medium">
+                +$5.80 (+4.37%)
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-data-metric-sm text-data-metric-sm px-space-sm py-space-2xs bg-primary text-on-primary uppercase font-medium">
+                  High Attention · Form 8-K
+                </span>
+</td>
+<td class="px-space-xl py-space-md text-right">
+<button class="font-label-md text-label-md text-on-surface hover:underline uppercase tracking-wider">
+                  View Snapshot
+                </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-lowest transition-colors duration-150 hover:bg-surface">
+<td class="px-space-xl py-space-md">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Friday, Oct 11, 2024</span>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">16:00 EST · Weekly Close Audit</span>
+</div>
+</td>
+<td class="px-space-md py-space-md font-medium">
+                $132.72
+              </td>
+<td class="px-space-md py-space-md text-on-surface">
+                +$0.45 (+0.34%)
+              </td>
+<td class="px-space-md py-space-md">
+<span class="font-data-metric-sm text-data-metric-sm px-space-sm py-space-2xs border border-outline-variant bg-surface uppercase font-medium">
+                  Stable
+                </span>
+</td>
+<td class="px-space-xl py-space-md text-right">
+<button class="font-label-md text-label-md text-on-surface hover:underline uppercase tracking-wider">
+                  View Snapshot
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Ledger Footer Strip -->
+<div class="px-space-xl py-space-sm border-t border-outline-variant bg-surface flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">
+          SHOWING 4 OF 48 HISTORICAL LOGGED CHECKPOINTS
+        </span>
+<div class="flex items-center gap-space-sm font-label-md text-label-md">
+<button class="px-space-sm py-space-2xs text-on-surface-variant hover:text-on-surface disabled:opacity-30 uppercase" disabled="">Previous</button>
+<span class="font-data-metric-sm text-data-metric-sm text-on-surface">PAGE 1 / 12</span>
+<button class="px-space-sm py-space-2xs text-on-surface hover:underline uppercase">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant mt-space-3xl"><div class="w-full px-margin-desktop py-space-xl flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><span class="font-headline-sm text-headline-sm text-on-surface">Tickr</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">Institutional Intelligence Terminal · System Protocol RFC-883</span></div><div class="flex items-center gap-space-lg"><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">LATENCY 12ms</span><span class="font-data-metric-sm text-data-metric-sm text-on-surface-variant">FEED: DIRECT-L1</span><span class="font-label-md text-label-md text-on-surface-variant">© 2025 Tickr Analytics LLC</span></div></div></footer></body></html>

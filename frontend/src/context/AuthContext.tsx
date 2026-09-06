@@ -14,28 +14,39 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>({
-    id: 'demo-user-alex',
-    name: 'Alex Sterling',
-    email: 'alex.sterling@institutional.example',
-  });
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Check session on mount
-    const checkAuth = async () => {
-      try {
-        if (api.getToken()) {
+  const initAuth = async () => {
+    setLoading(true);
+    try {
+      if (api.getToken()) {
+        try {
           const res = await api.getMe();
           setUser(res.user);
+          return;
+        } catch {
+          // Token expired, fallback to demo login
         }
-      } catch {
-        // keep fallback demo user for offline presentation
-      } finally {
-        setLoading(false);
       }
-    };
-    checkAuth();
+      // Auto-authenticate with demo user
+      const loginRes = await api.login('demo@example.com', 'password123');
+      setUser(loginRes.user);
+    } catch (err) {
+      console.warn('Backend auto-login notice:', err);
+      // Fallback guest user if server is offline
+      setUser({
+        id: 'demo-user',
+        name: 'Alex Demo Trader',
+        email: 'demo@example.com',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    initAuth();
   }, []);
 
   const login = async (email: string, pass: string) => {
@@ -64,15 +75,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const demoLogin = async () => {
-    try {
-      await login('demo@example.com', 'password123');
-    } catch {
-      setUser({
-        id: 'demo-user-alex',
-        name: 'Alex Sterling',
-        email: 'demo@example.com',
-      });
-    }
+    await initAuth();
   };
 
   return (

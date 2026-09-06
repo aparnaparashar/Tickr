@@ -38,24 +38,22 @@ class ApiService {
       headers['Authorization'] = `Bearer ${this.token}`;
     }
 
-    try {
-      const response = await fetch(`${API_BASE}${endpoint}`, {
-        ...options,
-        headers,
-        credentials: 'include',
-      });
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+      ...options,
+      headers,
+      credentials: 'include',
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData?.error?.message || `API Error: ${response.status} ${response.statusText}`);
-      }
-
-      const json = await response.json();
-      return json.data;
-    } catch (err) {
-      console.warn(`API call failed for ${endpoint}:`, err);
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const message = errorData?.error?.message || `HTTP ${response.status}: ${response.statusText}`;
+      const err = new Error(message);
+      (err as unknown as { status: number }).status = response.status;
       throw err;
     }
+
+    const json = await response.json();
+    return json.data;
   }
 
   // Auth Endpoints
@@ -80,6 +78,8 @@ class ApiService {
   async logout() {
     try {
       await this.request('/auth/logout', { method: 'POST' });
+    } catch {
+      // ignore
     } finally {
       this.setToken(null);
     }
@@ -92,6 +92,10 @@ class ApiService {
   // Watchlists Endpoints
   async getWatchlists(): Promise<{ watchlists: Watchlist[] }> {
     return this.request<{ watchlists: Watchlist[] }>('/watchlists');
+  }
+
+  async getWatchlist(watchlistId: string): Promise<{ watchlist: Watchlist }> {
+    return this.request<{ watchlist: Watchlist }>(`/watchlists/${watchlistId}`);
   }
 
   async createWatchlist(name: string, isDefault = false): Promise<{ watchlist: Watchlist }> {
@@ -155,7 +159,7 @@ class ApiService {
     return this.request<{ news: NewsItem[] }>(`/stocks/${instrumentId}/news`);
   }
 
-  // Since You Last Checked Intelligence
+  // "Since You Last Checked" Intelligence
   async getChangesSinceLastCheck(instrumentId: string): Promise<MeaningfulChangesResult> {
     return this.request<MeaningfulChangesResult>(`/stocks/${instrumentId}/changes-since-last-check`);
   }
@@ -165,6 +169,15 @@ class ApiService {
       `/stocks/${instrumentId}/checkpoint/acknowledge`,
       { method: 'POST' }
     );
+  }
+
+  async getChangeHistory(
+    instrumentId: string,
+    cursor?: string,
+    limit = 10
+  ): Promise<{ events: unknown[]; nextCursor: string | null; hasMore: boolean }> {
+    const url = `/stocks/${instrumentId}/change-history?limit=${limit}${cursor ? `&cursor=${cursor}` : ''}`;
+    return this.request<{ events: unknown[]; nextCursor: string | null; hasMore: boolean }>(url);
   }
 
   // Dashboard Summary
@@ -177,7 +190,11 @@ class ApiService {
     return this.request<{ alerts: Alert[] }>('/alerts');
   }
 
-  async createAlert(instrumentId: string, type: string, targetValue: number): Promise<{ alert: Alert }> {
+  async createAlert(
+    instrumentId: string,
+    type: 'PRICE_ABOVE' | 'PRICE_BELOW' | 'PERCENT_MOVE' | 'VOLUME_ANOMALY' | 'MEANINGFUL_CHANGE',
+    targetValue: number
+  ): Promise<{ alert: Alert }> {
     return this.request<{ alert: Alert }>('/alerts', {
       method: 'POST',
       body: JSON.stringify({ instrumentId, type, targetValue }),
