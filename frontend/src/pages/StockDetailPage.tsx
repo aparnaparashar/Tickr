@@ -151,7 +151,7 @@ export const StockDetailPage: React.FC<StockDetailPageProps> = ({
               Baseline Timestamp:{' '}
               {changes?.checkpoint?.lastAcknowledgedAt
                 ? new Date(changes.checkpoint.lastAcknowledgedAt).toLocaleString()
-                : 'First Visit — No prior baseline acknowledged'}
+                : 'First Visit: No prior baseline acknowledged'}
             </p>
           </div>
 
