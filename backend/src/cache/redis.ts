@@ -38,11 +38,33 @@ class MemoryCacheFallback {
     return count;
   }
 
+  async incrby(key: string, amount: number): Promise<number> {
+    const item = this.store.get(key);
+    let val = 0;
+    let existingExpiry: number | null = null;
+    if (item) {
+      if (item.expiry !== null && Date.now() > item.expiry) {
+        this.store.delete(key);
+      } else {
+        val = parseInt(item.value, 10) || 0;
+        existingExpiry = item.expiry;
+      }
+    }
+    const newVal = val + amount;
+    this.store.set(key, { value: newVal.toString(), expiry: existingExpiry });
+    return newVal;
+  }
+
   async incr(key: string): Promise<number> {
-    const curr = await this.get(key);
-    const val = (curr ? parseInt(curr, 10) : 0) + 1;
-    this.store.set(key, { value: val.toString(), expiry: null });
-    return val;
+    return this.incrby(key, 1);
+  }
+
+  async ttl(key: string): Promise<number> {
+    const item = this.store.get(key);
+    if (!item) return -2;
+    if (item.expiry === null) return -1;
+    const remaining = Math.ceil((item.expiry - Date.now()) / 1000);
+    return remaining > 0 ? remaining : -2;
   }
 
   async expire(key: string, seconds: number): Promise<number> {

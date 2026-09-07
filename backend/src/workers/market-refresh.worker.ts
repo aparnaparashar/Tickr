@@ -91,8 +91,16 @@ export class MarketRefreshWorker {
       metrics.increment('jobs_completed_total', 'market-refresh');
       return quotes.length;
     } catch (err) {
+      if (
+        err instanceof Error &&
+        err.message.includes('Twelve Data API quota exhausted')
+      ) {
+        logger.warn('Twelve Data quota exhausted. Skipping this refresh cycle.');
+        return 0;
+      }
+
       metrics.increment('jobs_failed_total', 'market-refresh');
-      logger.error({ error: (err as Error).message }, 'Market refresh worker error');
+      logger.error({ error: err }, 'Market refresh worker error');
       return 0;
     }
   }

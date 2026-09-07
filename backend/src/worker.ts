@@ -1,7 +1,15 @@
+import dns from 'node:dns';
 import { MarketRefreshWorker } from './workers/market-refresh.worker.js';
 import { AlertsService } from './modules/alerts/alerts.service.js';
 import { config } from './config/env.js';
 import { logger } from './observability/logger.js';
+
+// Prioritize IPv4 DNS lookups on Windows to avoid Cloudflare 522 timeouts
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch {
+  // ignore
+}
 
 let isRunning = true;
 
@@ -14,7 +22,14 @@ const startWorker = async () => {
     try {
       await MarketRefreshWorker.refreshWatchedInstruments();
     } catch (err) {
-      logger.error({ error: (err as Error).message }, 'Market refresh background cycle error');
+      if (
+        err instanceof Error &&
+        err.message.includes('Twelve Data API quota exhausted')
+      ) {
+        logger.warn('Twelve Data quota exhausted. Skipping this refresh cycle.');
+        return;
+      }
+      logger.error({ error: err }, 'Market refresh background cycle error');
     }
   }, config.REFRESH_WORKER_INTERVAL_MS);
 

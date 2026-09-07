@@ -1,6 +1,14 @@
+import dns from 'node:dns';
 import { buildApp } from './app.js';
 import { config } from './config/env.js';
 import { logger } from './observability/logger.js';
+
+// Prioritize IPv4 DNS lookups on Windows to avoid Cloudflare 522 timeouts
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch {
+  // ignore
+}
 
 const start = async () => {
   const app = await buildApp();

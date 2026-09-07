@@ -115,6 +115,16 @@ export class TwelveDataProvider implements MarketDataProvider {
       }));
     } catch (err) {
       metrics.recordProvider(this.name, 'failure');
+      const axiosErr = err as any;
+      if (
+        (err instanceof AppError && err.message.includes('Twelve Data API quota exhausted')) ||
+        axiosErr.response?.status === 429 ||
+        axiosErr.response?.data?.message?.includes('API call limit') ||
+        axiosErr.response?.data?.message?.includes('quota')
+      ) {
+        logger.warn('Twelve Data API quota exhausted during search');
+        throw AppError.providerRateLimited('Twelve Data API quota exhausted');
+      }
       logger.error({ error: (err as Error).message }, 'Twelve Data search error');
       throw AppError.providerUnavailable('Failed to search stocks on Twelve Data');
     }
@@ -145,6 +155,15 @@ export class TwelveDataProvider implements MarketDataProvider {
 
       metrics.recordProvider(this.name, 'success');
       const resData = response.data;
+      if (
+        resData &&
+        (resData.code === 429 ||
+          (typeof resData.message === 'string' &&
+            (resData.message.includes('API call limit') || resData.message.includes('quota'))))
+      ) {
+        throw AppError.providerRateLimited('Twelve Data API quota exhausted');
+      }
+
       const results: NormalizedQuote[] = [];
 
       // Twelve data returns a single object if 1 symbol, or a dictionary if multiple
@@ -191,6 +210,16 @@ export class TwelveDataProvider implements MarketDataProvider {
       return results;
     } catch (err) {
       metrics.recordProvider(this.name, 'failure');
+      const axiosErr = err as any;
+      if (
+        (err instanceof AppError && err.message.includes('Twelve Data API quota exhausted')) ||
+        axiosErr.response?.status === 429 ||
+        axiosErr.response?.data?.message?.includes('API call limit') ||
+        axiosErr.response?.data?.message?.includes('quota')
+      ) {
+        logger.warn('Twelve Data API quota exhausted during quotes fetch');
+        throw AppError.providerRateLimited('Twelve Data API quota exhausted');
+      }
       logger.error({ error: (err as Error).message }, 'Twelve Data quote error');
       throw AppError.providerUnavailable('Failed to fetch quotes from Twelve Data');
     }
@@ -215,6 +244,15 @@ export class TwelveDataProvider implements MarketDataProvider {
 
       metrics.recordProvider(this.name, 'success');
       const data: TwelveDataTimeSeriesResponse = response.data;
+      if (
+        data &&
+        (data.code === 429 ||
+          (typeof data.message === 'string' &&
+            (data.message.includes('API call limit') || data.message.includes('quota'))))
+      ) {
+        throw AppError.providerRateLimited('Twelve Data API quota exhausted');
+      }
+
       if (!data.values || !Array.isArray(data.values)) {
         return [];
       }
@@ -231,6 +269,16 @@ export class TwelveDataProvider implements MarketDataProvider {
       }));
     } catch (err) {
       metrics.recordProvider(this.name, 'failure');
+      const axiosErr = err as any;
+      if (
+        (err instanceof AppError && err.message.includes('Twelve Data API quota exhausted')) ||
+        axiosErr.response?.status === 429 ||
+        axiosErr.response?.data?.message?.includes('API call limit') ||
+        axiosErr.response?.data?.message?.includes('quota')
+      ) {
+        logger.warn('Twelve Data API quota exhausted during time series');
+        throw AppError.providerRateLimited('Twelve Data API quota exhausted');
+      }
       logger.error({ error: (err as Error).message }, 'Twelve Data time_series error');
       throw AppError.providerUnavailable('Failed to fetch time series from Twelve Data');
     }

@@ -37,14 +37,16 @@ export class QuotaManager {
       }
 
       // 3. Atomically increment minute counter
-      const newMinute = await client.incr(minuteKey);
-      if (newMinute === creditsNeeded) {
+      await (client as any).incrby(minuteKey, creditsNeeded);
+      const minuteTtl = await (client as any).ttl(minuteKey);
+      if (minuteTtl < 0) {
         await client.expire(minuteKey, 60); // 1 minute window
       }
 
       // 4. Atomically increment daily counter
-      const newDaily = await client.incr(dailyKey);
-      if (newDaily === creditsNeeded) {
+      await (client as any).incrby(dailyKey, creditsNeeded);
+      const dailyTtl = await (client as any).ttl(dailyKey);
+      if (dailyTtl < 0) {
         await client.expire(dailyKey, 86400); // 24 hour window
       }
 
