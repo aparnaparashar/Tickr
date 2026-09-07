@@ -20,6 +20,7 @@ import { marketDataRoutes } from './modules/market-data/market-data.routes.js';
 import { checkpointsRoutes } from './modules/checkpoints/checkpoints.routes.js';
 import { dashboardRoutes } from './modules/dashboard/dashboard.routes.js';
 import { alertsRoutes } from './modules/alerts/alerts.routes.js';
+import { finnhubWebhookRoutes } from './modules/webhooks/finnhub-webhook.routes.js';
 import { healthRoutes } from './observability/health.controller.js';
 
 export const buildApp = async () => {
@@ -106,9 +107,12 @@ export const buildApp = async () => {
       await v1.register(checkpointsRoutes, { prefix: '/stocks' });
       await v1.register(dashboardRoutes, { prefix: '/dashboard' });
       await v1.register(alertsRoutes, { prefix: '/alerts' });
+      await v1.register(finnhubWebhookRoutes, { prefix: '/webhooks' });
     },
     { prefix: '/api/v1' }
   );
+  await app.register(finnhubWebhookRoutes, { prefix: '/webhooks' });
+  await app.register(finnhubWebhookRoutes, { prefix: '/api/webhooks' });
 
   // 9. Standardized Global Error Handler
   app.setErrorHandler((error: Error & { statusCode?: number; code?: string; validation?: unknown }, req, reply) => {

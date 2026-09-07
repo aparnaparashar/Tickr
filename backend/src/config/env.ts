@@ -26,6 +26,11 @@ const envSchema = z.object({
   TWELVE_DATA_DAILY_CREDIT_BUDGET: z.coerce.number().default(800),
   PROVIDER_HTTP_TIMEOUT_MS: z.coerce.number().default(5000),
 
+  FINNHUB_API_KEY: z.string().default(''),
+  FINNHUB_BASE_URL: z.string().default('https://finnhub.io/api/v1'),
+  FINNHUB_SECRET: z.string().default(''),
+  FINNHUB_MINUTE_CREDIT_BUDGET: z.coerce.number().default(60),
+
   NEWS_PROVIDER: z.enum(['alpha_vantage', 'mock']).default('mock'),
   ALPHA_VANTAGE_API_KEY: z.string().default('demo'),
 
@@ -49,7 +54,17 @@ const envSchema = z.object({
 });
 
 const parseEnv = () => {
-  const result = envSchema.safeParse(process.env);
+  const rawEnv = {
+    ...process.env,
+    FINNHUB_SECRET:
+      process.env.FINNHUB_SECRET ||
+      process.env.FINNHUB_WEBHOOK_SECRET ||
+      process.env.X_FINNHUB_SECRET ||
+      process.env['X-Finnhub-Secret'] ||
+      '',
+  };
+
+  const result = envSchema.safeParse(rawEnv);
   if (!result.success) {
     console.error('❌ Invalid environment variables:', result.error.format());
     throw new Error('Environment configuration validation failed');
